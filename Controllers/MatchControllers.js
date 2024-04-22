@@ -1,52 +1,80 @@
-const MatchesModel = require("../Database/Schemas/MatchSchema")
-const { Priortize } = require("../Utilities/Methods/Algorithms/Prioritizer")
+const MatchesModel = require("../Database/Schemas/MatchSchema");
+const { Priortize } = require("../Utilities/Methods/Algorithms/Prioritizer");
+const { ResponseHandler } = require("../Utilities/Response/ResponseHandler");
 
-module.exports.GetAllMatches=(req,res)=>{
-    try {     
-        MatchesModel.find().then((response)=>{
-            console.log(response)
-            res.send(response)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    } catch (error) {
-        res.send(error)
-    }
-}
+module.exports.GetAllMatches = (req, res) => {
+  try {
+    MatchesModel.find()
+      .then((response) => {
+        ResponseHandler(res, 1, 200,null, response);
+      })
+      .catch((err) => {
+        ResponseHandler(res, 0,500, err, null);
+      });
+  } catch (err) {
+    ResponseHandler(res, 0,500, err, null);
+  }
+};
 
-module.exports.AddNewMatch = (req,res)=>{
-    try {
-        let {format,key,name,season,start_date,status,teams,venvue,showInApp,gender} = req.body;
-        console.log({format,key,name,season,start_date,status,teams,venvue,showInApp,gender});
-        MatchesModel.create({format,key,name,season,start_date,status,teams,venvue,showInApp,gender}).then((response)=>{
-            res.send(response);
-        }).catch((err)=>{
-            res.send(err)
-        })
-    } catch (error) {
-        res.send(error)
-    }
-}
+module.exports.AddNewMatch = (req, res) => {
+  try {
+    let {
+      format,
+      key,
+      name,
+      season,
+      start_date,
+      status,
+      teams,
+      venue,
+      showInApp,
+      gender,
+    } = req.body;
+    MatchesModel.create({
+      format,
+      key,
+      name,
+      season,
+      start_date,
+      status,
+      teams,
+      venue,
+      showInApp,
+      gender,
+    })
+      .then((response) => {
+        ResponseHandler(res, 1,200, null, response);
+      })
+      .catch((err) => {
+        ResponseHandler(res, 0,500, err, null);
+    });
+} catch (err) {
+    ResponseHandler(res, 0,500, err, null);
+  }
+};
 
-module.exports.UpdateMatches = async (req,res)=>{
-    try{
-       const match = await MatchesModel.findById(req.body.matchId);
-       match={...match,...req.body.changes};
-       match.save();
-       res.send("Updated");
+module.exports.UpdateMatches = async (req, res) => {
+  try {
+    let match = await MatchesModel.findByIdAndUpdate(req.body.matchId,{...req.body.changes},{new:true});
+    if (match === null) {
+      ResponseHandler(res, 0,400, "No Match with Provided Id Exists", null);
+    } else {
+      ResponseHandler(res, 1,200, null, "Match Updated");
     }
-    catch(error){
-        res.send(error)
-    }
-}
+  } catch (err) {
+    ResponseHandler(res, 0,400, err, null);
+  }
+};
 
-module.exports.PriortizeMatches =(req,res)=>{
-    try {
-        MatchesModel.find({showInApp:true}).sort({'start_date.iso':1}).then((response)=>{
-            const Matches =  Priortize(response);
-            res.send( Matches.slice(0,6))
-        })
-    } catch (error) {
-        res.send(error)
-    }
-}
+module.exports.PriortizeMatches = (req, res) => {
+  try {
+    MatchesModel.find({ showInApp: true })
+      .sort({ "start_date.iso": 1 })
+      .then((response) => {
+        const Matches = Priortize(response);
+        ResponseHandler(res, 1,200, null, Matches.slice(0, 6));
+      });
+  } catch (err) {
+    ResponseHandler(res, 0,500, err, null);
+  }
+};
