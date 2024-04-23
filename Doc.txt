@@ -12,6 +12,6 @@ PUT - http://localhost:5000/matches/updateMatch
  } in body,
  expected Output: Message for the result of attempt to update data
 
-GET - http://localhost:5000/matches/getAllMatches
+GET - http://localhost:5000/matches/getMatch
  expected Input None
  expected Output List of all the Matches

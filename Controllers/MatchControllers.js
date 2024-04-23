@@ -2,15 +2,27 @@ const MatchesModel = require("../Database/Schemas/MatchSchema");
 const { Priortize } = require("../Utilities/Methods/Algorithms/Prioritizer");
 const { ResponseHandler } = require("../Utilities/Response/ResponseHandler");
 
-module.exports.GetAllMatches = (req, res) => {
+module.exports.GetMatch = (req, res) => {
   try {
-    MatchesModel.find()
+    const MatchId = req.query.MatchId;
+    if(MatchId){
+      MatchesModel.findById(MatchId).then((response)=>{
+        ResponseHandler(res, 1, 200,null, response);
+      }).catch((err)=>{
+        ResponseHandler(res, 0,500, err, null);
+      })
+    }
+    else{
+      const condition = req.query
+      console.log(condition)
+      MatchesModel.find(condition)
       .then((response) => {
         ResponseHandler(res, 1, 200,null, response);
       })
       .catch((err) => {
         ResponseHandler(res, 0,500, err, null);
       });
+    }
   } catch (err) {
     ResponseHandler(res, 0,500, err, null);
   }
