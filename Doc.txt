@@ -1,0 +1,17 @@
+GET - http://localhost:5000/matches/getPriorityList 
+ expected Input:None
+ expected Output: List of Matches Arranged in priority Order
+POST - http://localhost:5000/matches/addMatch
+ expected Input: Match Data in correct form
+ expected Output: Message for the result of attempt to add data
+
+PUT - http://localhost:5000/matches/updateMatch
+ expected Input: {
+  "matchId":"",
+  "changes":{}
+ } in body,
+ expected Output: Message for the result of attempt to update data
+
+GET - http://localhost:5000/matches/getAllMatches
+ expected Input None
+ expected Output List of all the Matches

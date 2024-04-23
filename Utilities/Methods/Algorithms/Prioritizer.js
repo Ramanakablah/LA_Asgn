@@ -9,15 +9,21 @@ module.exports.Priortize = (arr, name = "India") => {
       aPri++;
     }
 
-    if (a.venue.includes(name)) {
+    if (a.status === "notcompleted" && b.status === "notcompleted") {
+    } else if (a.status === "notcompleted") {
+      bPri+=2;
+    } else if (b.status === "notcompleted") {
+      aPri+=2;
+    }
+
+    if (a.venue?.includes(name)) {
       aPri += 1;
     }
 
-    if (b.value.includes(name)) {
+    if (b.venue?.includes(name)) {
       bPri += 1;
     }
 
-    if (a.venue)
       if (a.teams.a.name.includes(name) || a.teams.b.name.includes(name)) {
         aPri += 2;
       }
@@ -29,15 +35,19 @@ module.exports.Priortize = (arr, name = "India") => {
       aPri += 2;
     } else if (a.format === "one-day") {
       aPri += 1;
+    } else if (a.format === "odi") {
+      aPri += 0;
     }
 
     if (b.format === "t-20") {
       bPri += 2;
     } else if (b.format === "one-day") {
       bPri += 1;
+    } else if (b.format === "odi") {
+      bPri += 0;
     }
 
-    return bPri - aPri;
+    return (bPri - aPri);
   });
 
   return arr;

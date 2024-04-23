@@ -43,7 +43,7 @@ module.exports.AddNewMatch = (req, res) => {
       gender,
     })
       .then((response) => {
-        ResponseHandler(res, 1,200, null, response);
+        ResponseHandler(res, 1,200, null, "Match Added Successfully");
       })
       .catch((err) => {
         ResponseHandler(res, 0,500, err, null);
