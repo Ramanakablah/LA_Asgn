@@ -1,0 +1,15 @@
+Algorithm firstle Fetches a Predefined Hardcode List from Database;
+
+This List Contains weightage for the multiple values of the elements of match 
+
+Then Matchesa are Sorted using Comparator 
+
+Comparator function Seggregate the matches according to the Priority Weightage each Match Gain
+
+Thus arranging my matches according to the suitable Match Weightage
+
+Although data is already arranged in accordance to the time but the matches before 9PM are given special Priorities
+
+a function DateParser return me an array regarding date [year,month,date,hour,minute,second];
+
+and i can set comparisons as per my need from the array 

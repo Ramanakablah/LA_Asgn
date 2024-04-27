@@ -50,7 +50,7 @@ module.exports.VenuePri = {
     "New Zealand": 1
 }
 
-module.exports.StatusPri = { "completed": 1, "notstarted": 2, "started": 30 }
+module.exports.StatusPri = { "completed": 1, "notstarted": 5, "started": 50 }
 
 module.exports.FormatPri = { "t20": 2, "one-day": 1 }
 
