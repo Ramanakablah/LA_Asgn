@@ -4,6 +4,8 @@ const Data = require("./Data/Data");
 const ConnectorFunction = require('./Database/DatabaseConnector');
 const MatchesModel = require('./Database/Schemas/MatchSchema');
 const MatchRouter = require('./Router/MatchesRouters');
+const PriorityModel = require('./Database/Schemas/PrioritiesSchema');
+const { StatusPri, FormatPri, VenuePri , seasonPri, teamsPri } = require('./Data/Weightage');
 const app = express();
 
 ConnectorFunction();
@@ -24,6 +26,24 @@ app.get("/insertmany",(req,res)=>{
         })
     } catch (error) {
         console.log(error)
+    }
+})
+
+app.get("/setPriority",(req,res)=>{
+    try {
+        PriorityModel.create({
+            status:StatusPri,
+            format:FormatPri,
+            venue:VenuePri,
+            season:seasonPri,
+            teams:teamsPri,
+        }).then((response)=>{
+            console.log({response})
+            res.send(response);
+        })
+    } catch (error) {
+        console.log(error);
+        res.send(error);
     }
 })
 

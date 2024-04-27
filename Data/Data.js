@@ -1,3 +1,5 @@
+// venue , name ,start_date , teams, status
+
 module.exports = Assignmentjson=[
     {
         "format" : "t20",
@@ -30,9 +32,9 @@ module.exports = Assignmentjson=[
             "name" : "Ireland  v Thailand  T20I Series Women"
         },
         "start_date" : {
-            "iso" : "2024-04-16T10:00:00.000Z"
+            "iso" : "2024-04-16T10:00:00.000Z" //  day / night basis on current time closer time
         },
-        "status" : "completed",
+        "status" : "completed", // live / not started / copleted 
         "teams" : {
             "a" : {
                 "name" : "Ireland Women"
@@ -41,9 +43,9 @@ module.exports = Assignmentjson=[
                 "name" : "Thailand Women"
             }
         },
-        "venue": "India",
+        "venue": "India", 
         "showInApp": true,
-        "gender" : "women"
+        "gender" : "women" //  live+wemen > completed+men  
     },
     {
         "format" : "t20",
