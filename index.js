@@ -5,7 +5,7 @@ const ConnectorFunction = require('./Database/DatabaseConnector');
 const MatchesModel = require('./Database/Schemas/MatchSchema');
 const MatchRouter = require('./Router/MatchesRouters');
 const PriorityModel = require('./Database/Schemas/PrioritiesSchema');
-const { StatusPri, FormatPri, VenuePri , seasonPri, teamsPri } = require('./Data/Weightage');
+const { StatusPri, FormatPri, VenuePri , seasonPri, teamsPri, GenderPri } = require('./Data/Weightage');
 const app = express();
 
 ConnectorFunction();
@@ -37,6 +37,7 @@ app.get("/setPriority",(req,res)=>{
             venue:VenuePri,
             season:seasonPri,
             teams:teamsPri,
+            gender:GenderPri
         }).then((response)=>{
             console.log({response})
             res.send(response);

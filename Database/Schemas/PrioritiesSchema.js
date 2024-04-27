@@ -8,7 +8,7 @@ const PrioritixerSchema = schema({
     format:{},
     venue:{},
     teams:{},
-    gender:{men:10,wemen:9}
+    gender:{}
 });
 
 const PriorityModel = new mongoose.model('Priorities',PrioritixerSchema)

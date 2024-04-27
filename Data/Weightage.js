@@ -54,6 +54,8 @@ module.exports.StatusPri = { "completed": 1, "notstarted": 5, "started": 50 }
 
 module.exports.FormatPri = { "t20": 2, "one-day": 1 }
 
+module.exports.GenderPri = {"men":10,"wemen":9}
+
 module.exports.seasonPri = {
     "Indian Premier League": 15,
     "Ireland  v Thailand  T20I Series Women": 14,

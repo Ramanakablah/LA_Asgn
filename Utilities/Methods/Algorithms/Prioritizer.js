@@ -4,6 +4,7 @@ const { DatearrayParser } = require("./Dtaes");
 module.exports.Priortize = async (arr, name = "India") => {
   let Priority_Map = await PriorityModel.find()
   Priority_Map = Priority_Map[0];
+  console.log(PriorityModel.gender)
   arr.sort((a, b) => {
     let aPri = 0,
       bPri = 0;
